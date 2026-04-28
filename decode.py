@@ -1,0 +1,15 @@
+import base64
+
+# from attempt 1
+token = "MzE1NTkyMjE2MDoxOTU1NzQwMzEyOjIxNDY0ODA4NjY6Mjc4OTA4MjkwMzozMTAyMjA3OTM3OjI5MTk4OTc0MTg6MzEzNzM1MjI0NDo0MTQ0ODIyNzU1"
+"""
+3155922160:1955740312:2146480866:2789082903:3102207937:2919897418:3137352244:4144822755 
+[3155922160, 1955740312, 2146480866, 2789082903, 3102207937, 2919897418, 3137352244, 4144822755] 8
+"""
+
+decoded = base64.b64decode(token).decode("utf-8")
+print(decoded)
+
+nums = [int(x) for x in decoded.split(":")]
+print(nums)
+print(len(nums))
