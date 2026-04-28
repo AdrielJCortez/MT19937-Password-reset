@@ -1,5 +1,6 @@
 # py -3.11 server.py
 # https://www.python.org/downloads/release/python-3110/
+# http://localhost:8080
 import web
 from web import form
 import MT19937

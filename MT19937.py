@@ -84,7 +84,8 @@ class MT19937:
         # after twisting, start reading outputs again from index 0
         self.index = 0
 
-    # allow us to directly load recovered state for the attack
+    # allow us to directly load recovered state for the attack, clone and predict the generator
     def set_state(self, state_array, index=624):
+        # "clone" the generator and make sure each value is 32 bits
         self.mt = [x & 0xffffffff for x in state_array]
         self.index = index
