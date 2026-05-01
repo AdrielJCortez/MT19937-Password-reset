@@ -19,22 +19,26 @@ print(outputs[:16])
 
 # shift param comes from the tempering constants because that is what we are undoing,
 # undo right shift and xor since thats what we do in MT19937
+# result[31] = value[31]... result[30] = value[30] XOR result[30 + shift]
+# get to i = 29 for example result[29] = value[29] XOR result[31] (which we already have)
 def undo_right_shift_xor(value, shift):
     result = 0
 
     # go from MSB -> LSB
     for i in range(31, -1, -1):
 
-        # get the current bit and check if it is a one
+        # get the current bit
+        # value[i]
         bit = (value >> i) & 1
 
         shifted_bit = 0
 
         # make sure the bit is in the range of 32 [0-31]
+        # result [i + shift]
         if i + shift <= 31:
             shifted_bit = (result >> (i + shift)) & 1
 
-        # check if original bit is a 0 or a 1 from shifted bit or bit we got (undo the XOR)
+        # undo XOR with XOR
         original_bit = bit ^ shifted_bit
 
         # put the bit in that spot
@@ -89,7 +93,7 @@ clone = MT19937(0)
 clone.set_state(raw_state, 624)
 
 # if running sever without wanting to colelct tokens all over again but demo multiple times
-admin_requests_already_made = 2   # I change this to the amount of times that I think i did (6)
+admin_requests_already_made = 0   # I change this to the amount of times that I think i did (6)
 
 # each admin forgot request consumes 8 MT outputs
 # this is just used for "cycling" to make sure we get the 8 outputs
